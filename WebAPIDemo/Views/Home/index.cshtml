@@ -1,0 +1,53 @@
+﻿@model IEnumerable<WebAPIDemo.Models.ClientLocation>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+<div id="decorator" style="border: 1px solid lightgray; margin-top: 25px;">
+    <div id="content-wrapper" class="container full-contain">
+        <div class="shadow-sm" id="options" style="position: absolute; z-index: 2; background: white; padding: 0px 0px 0px 0px; margin-right: 0px; margin-bottom: 0px;">
+            <div class="card">
+                <div class="card-header" data-toggle="collapse" href="#collapse" style="cursor: pointer;">
+                    Options
+                </div>
+                <div id="collapse" class="card-body collapse container">
+                    <div class="row mb-2">
+                        <select name="campus_select" id="campus_select" class="form-control col-sm mx-1" onchange="populateBuildingOptions(this)">
+                            <option value="-1">Select Campus</option>
+                        </select>
+                        <select name="building_select" id="building_select" class="form-control col-sm mx-1" onchange="populateFloorOptions(this)">
+                            <option value="-1">Select Building</option>
+                        </select>
+                        <select name="floor_select" id="floor_select" class="form-control col-sm mx-1" onchange="displayMap(this)">
+                            <option value="-1">Select Floor</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="input-group col-sm px-1">
+                            <input type="text" id="url" class="form-control" value="api/ClientLocations?locatedAfterTime=0&locatedBeforeTime=1528433448847&mapHierarchyString=%museum second%" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button" id="GetDataButton">Draw Heatmap</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="heat-wrap">
+            <div id="moveable">
+                <div id="heatmap" class="container full-contain">
+                    <img src="" id="floorImage" class="full-contain">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script language="javascript">
+    $("#collapse").width($(".body-content").width() - 15);
+</script>
+
+@Scripts.Render("~/bundles/analytics")

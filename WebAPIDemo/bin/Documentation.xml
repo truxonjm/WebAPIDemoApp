@@ -1,0 +1,1195 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAPIDemo</name>
+    </assembly>
+    <members>
+        <member name="M:WebAPIDemo.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:WebAPIDemo.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:WebAPIDemo.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:WebAPIDemo.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:WebAPIDemo.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:WebAPIDemo.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebAPIDemo.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:WebAPIDemo.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:WebAPIDemo.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:WebAPIDemo.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:WebAPIDemo.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:WebAPIDemo.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,WebAPIDemo.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,WebAPIDemo.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:WebAPIDemo.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},WebAPIDemo.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:WebAPIDemo.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:WebAPIDemo.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:WebAPIDemo.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageSampleKey.#ctor(WebAPIDemo.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:WebAPIDemo.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:WebAPIDemo.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:WebAPIDemo.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,WebAPIDemo.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:WebAPIDemo.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:WebAPIDemo.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:WebAPIDemo.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:WebAPIDemo.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:WebAPIDemo.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:WebAPIDemo.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:WebAPIDemo.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:WebAPIDemo.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebAPIDemo.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:WebAPIDemo.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:WebAPIDemo.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:WebAPIDemo.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebAPIDemo.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="T:WebAPIDemo.Controllers.ClientLocationsController">
+            <summary>
+            ClientLocation endpoints.
+            </summary>
+        </member>
+        <member name="M:WebAPIDemo.Controllers.ClientLocationsController.Get(System.Int64,System.Int64,System.String)">
+            <summary>
+            Returns a list of the ClientLocations that fall within the specified range and within an optional Campus, Building, or Floor.
+            </summary>
+            <param name="locatedAfterTime">The lower bound of the range.</param>
+            <param name="locatedBeforeTime">The upper bound of the range.</param>
+            <param name="mapHierarchyString">String denoting the location to pull locations from.</param>
+            <returns>A list of ClientLocations that fall within the specified range.</returns>
+        </member>
+        <member name="T:WebAPIDemo.Controllers.ClientsController">
+            <summary>
+            Client endpoints.
+            </summary>
+        </member>
+        <member name="M:WebAPIDemo.Controllers.ClientsController.#ctor">
+            <summary>
+            Returns list of all clients.
+            </summary>
+        </member>
+        <member name="M:WebAPIDemo.Controllers.ClientsController.Get">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPIDemo.Controllers.ClientsController.Get(System.Int32)">
+            <summary>
+            Returns specific client.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebAPIDemo.Controllers.FloorImageController">
+            <summary>
+            FloorImage endpoints.
+            </summary>
+        </member>
+        <member name="M:WebAPIDemo.Controllers.FloorImageController.Get(System.String,System.String,System.String)">
+            <summary>
+            Returns floor image specified by Campus, Building and Floor.
+            </summary>
+            <param name="mapCampus">Campus containing floor.</param>
+            <param name="mapBuilding">Building containing floor.</param>
+            <param name="mapFloor">Floor name.</param>
+            <returns>String containing the base64 data of the map image.</returns>
+        </member>
+        <member name="T:WebAPIDemo.Controllers.Maps.MapDataController">
+            <summary>
+            Provides access to the MapData from CMX.
+            </summary>
+        </member>
+        <member name="M:WebAPIDemo.Controllers.Maps.MapDataController.Get">
+            <summary>
+            Returns the data for all maps.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WebAPIDemo.Models.APInterface">
+            <summary>
+            Contains information about an APInterface.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.APInterface.dualBandSlot">
+            <summary>
+            The dual band slot of the APInterface.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.APInterface.slotNumber">
+            <summary>
+            The slot number of the APInterface.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.APInterface.channelAssignment">
+            <summary>
+            The channel assignment of the APInterface.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.APInterface.channelNumber">
+            <summary>
+            The channel number of the APInterface.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.APInterface.txPowerLevel">
+            <summary>
+            The tx power level of the APInterface.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.APInterface.txPowerControl">
+            <summary>
+            The tx power control of the APInterface.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.APInterface.antennaDiversity">
+            <summary>
+            The antenna diversity of the APInterface.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.APInterface.antennaMode">
+            <summary>
+            The antenna mode of the APInterface.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.APInterface.antennaType">
+            <summary>
+            The antenna type of the APInterface.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.APInterface.antennaAngle">
+            <summary>
+            The antenna angle of the APInterface.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.APInterface.antennaElevAngle">
+            <summary>
+            The antenna elevation angle of the APInterface.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.APInterface.antennaGain">
+            <summary>
+            The antenna gain of the APInterface.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.APInterface.band">
+            <summary>
+            The band of the APInterface.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.APInterface.antennaPattern">
+            <summary>
+            The antenna patter of the APInterface.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.APInterface.unit">
+            <summary>
+            The unit of the APInterface.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Models.AccessPoint">
+            <summary>
+            Contains information about an AccessPoint.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.AccessPoint.apType">
+            <summary>
+            Type of AP.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.AccessPoint.numOfSlots">
+            <summary>
+            Number of slots in AccessPoint.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.AccessPoint.floorId">
+            <summary>
+            Id of the floor.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.AccessPoint.angle">
+            <summary>
+            Angle of the AccessPoint.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.AccessPoint.switchName">
+            <summary>
+            Switch name.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.AccessPoint.name">
+            <summary>
+            Name of the AccessPoint.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.AccessPoint.radioMacAddress">
+            <summary>
+            Radio mac address of the AccessPoint.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.AccessPoint.ethMacAddress">
+            <summary>
+            Eth mac Address of the AccessPoint.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.AccessPoint.ipAddress">
+            <summary>
+            IP address of the AccessPoint.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.AccessPoint.apMode">
+            <summary>
+            ApMode of the AccessPoint.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.AccessPoint.floorIdString">
+            <summary>
+            Floor id string of the AccessPoint.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.AccessPoint.deviceDetails">
+            <summary>
+            Details about the AccessPoint.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.AccessPoint.geoCoordinate">
+            <summary>
+            GeoCoordinate of the AccessPoint.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.AccessPoint.mapCoordinates">
+            <summary>
+            Coordinates on the map of the AccessPoint.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.AccessPoint.apInterfaces">
+            <summary>
+            List if all APInterfaces associated with the AccessPoint.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Models.Exciter">
+            <summary>
+            Contains information about an Exciter.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Models.FilterRail">
+            <summary>
+            Contains information about a FilterRail.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Models.FilterRegion">
+            <summary>
+            Contains information about a FilterRegion.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.FilterRegion.regionType">
+            <summary>
+            Type of region.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.FilterRegion.regionCoordinates">
+            <summary>
+            List of coordinates that make up the FilterRegion.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.FilterRegion.isDefault">
+            <summary>
+            If the region is default.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Models.Coordinate">
+            <summary>
+            Contains a coordinate for parent object.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Coordinate.x">
+            <summary>
+            X value of the coordinate.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Coordinate.y">
+            <summary>
+            Y value of the coordinate.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Coordinate.z">
+            <summary>
+            Z value of the coordinate.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Coordinate.unit">
+            <summary>
+            Unit of the coordinate.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Models.Building">
+            <summary>
+            Holds information about a Building.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Building.objectVersion">
+            <summary>
+            Object version.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Building.name">
+            <summary>
+            Building name.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Building.dimension">
+            <summary>
+            Building dimension.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Building.image">
+            <summary>
+            Building Image.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Building.floorList">
+            <summary>
+            List of all floors in building.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Building.aesUid">
+            <summary>
+            AedUid of the building.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Building.aesUidString">
+            <summary>
+            String representation of the aedUid of the building.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Building.hierarchyName">
+            <summary>
+            Hierarchy string showing parent campus.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Models.Campus">
+            <summary>
+            Hold information about a campus.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Campus.objectVersion">
+            <summary>
+            Object version.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Campus.name">
+            <summary>
+            Campus name.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Campus.dimension">
+            <summary>
+            Campus dimension.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Campus.image">
+            <summary>
+            Campus Image.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Campus.buildingList">
+            <summary>
+            List of all Buildings on campus.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Campus.aesUid">
+            <summary>
+            AesUid of Campus.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Campus.aesUidString">
+            <summary>
+            String representation of the aedUid of the campus.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Campus.members">
+            <summary>
+            List of all members of campus.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Models.Client">
+            <summary>
+            Represents a single Client datapoint
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Client.Id">
+            <summary>
+            SQL Server id
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Client.MacAddress">
+            <summary>
+            MacAddress of the user
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Client.MapHierarchyString">
+            <summary>
+            String containing the heirarchy
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Models.ClientLocation">
+            <summary>
+            Represents a single ClientLocation datapoint.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.ClientLocation.MapCoordinateX">
+            <summary>
+            X coordinate on map.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.ClientLocation.MapCoordinateY">
+            <summary>
+            Y coordinate on map.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.ClientLocation.ConfidenceFactor">
+            <summary>
+            Confidence factor for point accuracy.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Models.DataAccess">
+            <summary>
+            Class that holds methods to pull data in from the database.
+            </summary>
+        </member>
+        <member name="M:WebAPIDemo.Models.DataAccess.GetClientLocations(System.Int64,System.Int64,System.String)">
+            <summary>
+            Returns the ClientLocations within in the time frame and location specified.
+            </summary>
+            <param name="locatedAfterTime">Beginning of the time to get ClientLocations from.</param>
+            <param name="locatedBeforeTime">End of the time to get ClientLocations from.</param>
+            <param name="mapHierarchyString">String denoting the location to pull locations from.</param>
+            <returns>The ClientLocations within the given time frame.</returns>
+        </member>
+        <member name="M:WebAPIDemo.Models.DataAccess.GetContentFromCMX(System.String)">
+            <summary>
+            Accesses the CMX API and returns the floor image from the campus, building and floor provided.
+            </summary>
+            <param name="url">CMX Url to get data from.</param>
+            <returns>The content of the response sent by CMX.</returns>
+        </member>
+        <member name="T:WebAPIDemo.Models.ConnectionHandler">
+            <summary>
+            Contains general functions to assist with database access.
+            </summary>
+        </member>
+        <member name="M:WebAPIDemo.Models.ConnectionHandler.CnnVal(System.String)">
+            <summary>
+            Configuration connection string retirever.
+            </summary>
+            <param name="name">Server name to obtain connection string for.</param>
+            <returns>Connection string specific to that server.</returns>
+        </member>
+        <member name="T:WebAPIDemo.Models.Dimension">
+            <summary>
+            Contains campus dimension data about the parent object.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Dimension.length">
+            <summary>
+            Length of parent object in units.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Dimension.width">
+            <summary>
+            Width of parent object in units.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Dimension.height">
+            <summary>
+            Height of parent object in units.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Dimension.offsetX">
+            <summary>
+            X-Offset of the parent object in units.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Dimension.offsetY">
+            <summary>
+            Y-Offset of the parent object in units.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Dimension.unit">
+            <summary>
+            Unit used for measurement.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Models.Floor">
+            <summary>
+            Contains information about the floor.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.objectVersion">
+            <summary>
+            Object version.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.name">
+            <summary>
+            Floor name.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.calibrationModelId">
+            <summary>
+            ID of the calibration model of the floor.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.aesUid">
+            <summary>
+            AedUid of the floor.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.aesUidString">
+            <summary>
+            String representation of the aedUid of the floor.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.hierarchyName">
+            <summary>
+            Hierarchy string showing parent Campus and Building.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.isOutdoor">
+            <summary>
+            If the floor is outdoors or inside a building.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.floorNumber">
+            <summary>
+            The floor number in the building.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.geoLocationCapable">
+            <summary>
+            States the geolocation capabilities of floor.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.mode">
+            <summary>
+            Mode of the floor.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.floorModeDetails">
+            <summary>
+            Object containing the floor mode details.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.dimension">
+            <summary>
+            Floor dimension.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.image">
+            <summary>
+            Floor Image.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.gpsMarkers">
+            <summary>
+            List of all GpsMarkers on floor.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.zones">
+            <summary>
+            List of all Zones on floor.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.obstacles">
+            <summary>
+            List of all Obstacles on floor.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.accessPoints">
+            <summary>
+            List of all AccessPoints on floor.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.referenceMarkers">
+            <summary>
+            List of all ReferenceMarkers on floor.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.filterRegions">
+            <summary>
+            List of all FilterRegions on floor.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.filterRails">
+            <summary>
+            List of all FilterRails on floor.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Floor.exciters">
+            <summary>
+            List of all Exciters on floor.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Models.FloorModeDetail">
+            <summary>
+            Contains details about parent object's mode.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.FloorModeDetail.mode">
+            <summary>
+            Type of mode.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.FloorModeDetail.requestedModeSet">
+            <summary>
+            If the requested mode is set.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Models.GpsMarker">
+            <summary>
+            Contains information about a GpsMarker.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Models.Image">
+            <summary>
+            Contains parent object image information.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Image.imageName">
+            <summary>
+            Name of the image.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Image.zoomLevel">
+            <summary>
+            Zoom level of the image.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Image.width">
+            <summary>
+            Width of the image in pixels.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Image.height">
+            <summary>
+            Height of the image in pixels.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Image.size">
+            <summary>
+            Max of the height and width. Used in scaling calculations.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Image.maxResolution">
+            <summary>
+            Maximum resolution of the image.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Image.colorDepth">
+            <summary>
+            Color depth of the image.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Models.MapData">
+            <summary>
+            This API returns all maps.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.MapData.version">
+            <summary>
+            API Version.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.MapData.campuses">
+            <summary>
+            All Campuses.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Models.Member">
+            <summary>
+            Contains information about a member.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Models.Zone">
+            <summary>
+            Contains information about a zone.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Zone.name">
+            <summary>
+            Name of the zone.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Zone.zoneCoordinate">
+            <summary>
+            The coordinates that make up the zone.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Zone.zoneType">
+            <summary>
+            Type of zone.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Models.Obstacle">
+            <summary>
+            Contains information about an obstacle.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Obstacle.name">
+            <summary>
+            Name of the Obstacle.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Obstacle.attenuation">
+            <summary>
+            Attenuation of the obstacle.
+            </summary>
+        </member>
+        <member name="P:WebAPIDemo.Models.Obstacle.obstacleCoordinates">
+            <summary>
+            List of coordinates that make up the obstacle.
+            </summary>
+        </member>
+        <member name="T:WebAPIDemo.Models.ReferenceMarker">
+            <summary>
+            Contains information about a ReferenceMarker.
+            </summary>
+        </member>
+    </members>
+</doc>

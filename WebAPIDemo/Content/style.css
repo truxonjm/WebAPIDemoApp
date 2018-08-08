@@ -1,0 +1,30 @@
+﻿#moveable {
+    position: relative;
+    transform-origin: center;
+    transform: scale(1);
+    border: 2px solid grey;
+}
+
+#content-wrapper {
+    height: 75vh;
+    background: lightgray;
+}
+
+#heat-wrap {
+    height: inherit;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+#options {
+    position: absolute; 
+    z-index: 2; 
+    background: white; 
+    margin: 5px 5px 5px 5px;
+}
+
+.full-contain {
+    width: 100%;
+    height: auto;
+    padding: 0px 0px 0px 0px;
+}
