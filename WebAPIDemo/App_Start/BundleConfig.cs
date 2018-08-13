@@ -10,10 +10,14 @@ namespace WebAPIDemo
 
             bundles.Add(new StyleBundle("~/bundles/style").Include(
                         "~/Content/bootstrap.min.css",
-                        "~/Content/style.css"));
+                        "~/Content/style.css",
+                        "~/Content/ion.rangeSlider.css",
+                        "~/Content/ion.rangeSlider.skinFlat.css",
+                        "~/Content/normalize.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery-ui").Include(
-                        "~/Scripts/jquery-ui-1.11.4/jquery-ui.min.js"));
+                        "~/Scripts/jquery-ui-1.11.4/jquery-ui.min.js",
+                        "~/Scripts/jquery.ui.touch-punch.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                         "~/Scripts/popper-utils.min.js",
@@ -29,7 +33,8 @@ namespace WebAPIDemo
                         "~/Scripts/Heatmap/heatmap.min.js",
                         "~/Scripts/Heatmap/heatmap-handler.js",
                         "~/Scripts/Maps/map-load.js",
-                        "~/Scripts/zoom-handler.js"));
+                        "~/Scripts/ion.rangeSlider.js",
+                        "~/Scripts/ui-behavior.js"));
         }
     }
 }

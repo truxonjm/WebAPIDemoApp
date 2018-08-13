@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar-fixed-top" style="padding-top: 50px;">
+    <div class="navbar-fixed-top" style="padding-top: 5vh;">
         <div class="container">
             <ul class="nav nav-tabs">
                 <li id="analytics-tab" class="nav-item">@Html.ActionLink("CMoG CMX Analytics", "Index", "Home", new { area = "" }, new { @class = ViewContext.RouteData.Values["Controller"].ToString() == "Home" ? "nav-link active" : "nav-link" })</li>

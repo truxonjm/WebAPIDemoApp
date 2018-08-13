@@ -495,29 +495,6 @@
             <param name="mapHierarchyString">String denoting the location to pull locations from.</param>
             <returns>A list of ClientLocations that fall within the specified range.</returns>
         </member>
-        <member name="T:WebAPIDemo.Controllers.ClientsController">
-            <summary>
-            Client endpoints.
-            </summary>
-        </member>
-        <member name="M:WebAPIDemo.Controllers.ClientsController.#ctor">
-            <summary>
-            Returns list of all clients.
-            </summary>
-        </member>
-        <member name="M:WebAPIDemo.Controllers.ClientsController.Get">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:WebAPIDemo.Controllers.ClientsController.Get(System.Int32)">
-            <summary>
-            Returns specific client.
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
         <member name="T:WebAPIDemo.Controllers.FloorImageController">
             <summary>
             FloorImage endpoints.
