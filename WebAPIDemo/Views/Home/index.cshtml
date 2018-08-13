@@ -1,38 +1,62 @@
 ﻿@model IEnumerable<WebAPIDemo.Models.ClientLocation>
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "CMoG - Heatmap and Analytics";
 }
 
 
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
-<div id="decorator" style="border: 1px solid lightgray; margin-top: 25px;">
-    <div id="content-wrapper" class="container full-contain">
-        <div class="shadow-sm" id="options" style="position: absolute; z-index: 2; background: white; padding: 0px 0px 0px 0px; margin-right: 0px; margin-bottom: 0px;">
+
+<div id="decorator" style="border: 1px solid lightgray; margin-top: 15px;">
+    <div id="content-wrapper" class="container full-contain" style="position: relative;">
+        <div class="shadow-sm rounded" id="options" style="position: absolute; z-index: 2;">
             <div class="card">
-                <div class="card-header" data-toggle="collapse" href="#collapse" style="cursor: pointer;">
+                <div class="card-header">
                     Options
                 </div>
                 <div id="collapse" class="card-body collapse container">
-                    <div class="row mb-2">
-                        <select name="campus_select" id="campus_select" class="form-control col-sm mx-1" onchange="populateBuildingOptions(this)">
-                            <option value="-1">Select Campus</option>
-                        </select>
-                        <select name="building_select" id="building_select" class="form-control col-sm mx-1" onchange="populateFloorOptions(this)">
-                            <option value="-1">Select Building</option>
-                        </select>
-                        <select name="floor_select" id="floor_select" class="form-control col-sm mx-1" onchange="displayMap(this)">
-                            <option value="-1">Select Floor</option>
-                        </select>
+                    <select name="campus_select" id="campus_select" class="form-control col-sm mx-1" style="margin-bottom: 7px;" onchange="populateBuildingOptions(this)">
+                        <option value="-1">Select Campus</option>
+                    </select>
+                    <select name="building_select" id="building_select" class="form-control col-sm mx-1" style="margin-bottom: 7px;" onchange="populateFloorOptions(this)">
+                        <option value="-1">Select Building</option>
+                    </select>
+                    <select name="floor_select" id="floor_select" class="form-control col-sm mx-1" style="margin-bottom: 7px;" onchange="displayMap(this)">
+                        <option value="-1">Select Floor</option>
+                    </select>
+                    <div class="custom-control custom-checkbox container col-sm mx-1">
+                        <input class="custom-control-input" id="toggle-animation-ui" type="checkbox" aria-label="Checkbox for toggling animation ui">
+                        <label class="custom-control-label" for="toggle-animation-ui" style="user-select: none;">Hide Animation Controls</label>
                     </div>
-                    <div class="row">
-                        <div class="input-group col-sm px-1">
-                            <input type="text" id="url" class="form-control" value="api/ClientLocations?locatedAfterTime=0&locatedBeforeTime=1528433448847&mapHierarchyString=%museum second%" placeholder="" aria-label="" aria-describedby="basic-addon1">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button" id="GetDataButton">Draw Heatmap</button>
-                            </div>
-                        </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="animation-ui" class="container" style="position: absolute; bottom: 5px; left: 0; z-index: 2; display: none;">
+            <div id="page-buttons" class="d-flex my-2" style=" position: relative;">
+                <div class="float-left">
+                    <div class="rounded">
+                        <button type="button" id="step-back" class="btn btn-secondary" data-toggle="tooltip"
+                                data-placement="top" title="Step-Back"><<</button>
                     </div>
+                </div>
+                <div class="flex-fill">
+
+                </div>
+                <div class="float-right">
+                    <div class="rounded">
+                        <button type="button" id="step-foreward" class="btn btn-secondary" data-toggle="tooltip"
+                                data-placement="top" title="Step-Foreward">>></button>
+                    </div>
+                </div>
+            </div>
+            <div id="slide" class="d-flex my-2" style="position: relative;">
+                <div class="flex-fill mr-2" id="range-container">
+                    <input type="text" id="range" value="" name="range" />
+                </div>
+                <div class="rounded ml-2" id="animate">
+                    <button type="button" id="animate-btn" class="btn btn-dark" data-toggle="tooltip"
+                                data-placement="top" title="Play/Pause">></button>
                 </div>
             </div>
         </div>
@@ -43,11 +67,7 @@
                 </div>
             </div>
         </div>
+        </div>
     </div>
-</div>
-
-<script language="javascript">
-    $("#collapse").width($(".body-content").width() - 15);
-</script>
 
 @Scripts.Render("~/bundles/analytics")

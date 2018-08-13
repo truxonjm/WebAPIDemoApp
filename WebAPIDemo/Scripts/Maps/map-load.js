@@ -1,15 +1,14 @@
-﻿var responseData = [];
-var lastCampusChosen = -1;
-var lastBuildingChosen = -1;
-var lastFloorChosen = -1;
-var baseMapScale = 1;
+﻿var responseData = [],
+    lastCampusChosen = -1,
+    lastBuildingChosen = -1,
+    lastFloorChosen = -1,
+    baseMapScale = 1;
 
-window.onload = function () {
-    $("#heat-wrap").hide();
+$(() => {
     $.ajax({
         url: "api/MapData",
         context: document.body
-    }).done(function (response) {
+    }).done((response) => {
         responseData = getCampuses(response);
         // The 0 index has a list containing the key and index of each campus, building, and floor. 
         // The dropdowns are populated with these lists of names, then the value is taken from 
@@ -24,19 +23,19 @@ window.onload = function () {
         //      * [2][1][3] contains the dimension, image, and hierarchyName data for that floor.
         // This data can then be sent to retrieve the image and make the calculations for the data scaling.
 
-        $.each(responseData[0], function (val, text) {
+        $.each(responseData[0], (val, text) => {
             // Populate the Campus options.
             $('#campus_select').append($('<option></option>').val(val).html(text))
         });
-    });    
-}
+    });
+});
 
 getCampuses = function (response) {
     var campusNames = {};
     var counter = 0;
     var campuses = [];
 
-    $.each(response.campuses, function (key, val) {
+    $.each(response.campuses, (key, val) => {
         campusNames[++counter] = val.name;
         var campus = getBuildings(val)
         campuses.push(campus);
@@ -51,7 +50,7 @@ getBuildings = function (campus) {
     var counter = 0;
     var buildings = [];
 
-    $.each(campus.buildingList, function (key, val) {
+    $.each(campus.buildingList, (key, val) => {
         buildingNames[++counter] = val.name;
         var building = getFloors(val)
         buildings.push(building);
@@ -66,7 +65,7 @@ getFloors = function (building) {
     var counter = 0;
     var floors = [];
 
-    $.each(building.floorList, function (key, val) {
+    $.each(building.floorList, (key, val) => {
         floorNames[++counter] = val.name;
         var floor = {
             'dimension': val.dimension,
@@ -93,7 +92,7 @@ populateBuildingOptions = function (obj) {
     lastCampusChosen = obj.value;
 
     // Populate the Building options.
-    $.each(responseData[obj.value][0], function (val, text) {
+    $.each(responseData[obj.value][0], (val, text) => {
         if (val != 0) {
             $('#building_select').append($('<option></option>').val(val).html(text))
         }
@@ -106,7 +105,7 @@ populateFloorOptions = function (obj) {
     lastBuildingChosen = obj.value;
 
     //Populate the Floor options.
-    $.each(responseData[lastCampusChosen][obj.value][0], function (val, text) {
+    $.each(responseData[lastCampusChosen][obj.value][0], (val, text) => {
         if (val != 0) {
             $('#floor_select').append($('<option></option>').val(val).html(text))
         }
@@ -116,15 +115,15 @@ populateFloorOptions = function (obj) {
 displayMap = function (obj) {
     lastFloorChosen = obj.value;
     mapData = responseData[lastCampusChosen][lastBuildingChosen][lastFloorChosen];
-    var CBF = mapData.hierarchyName.split('>');
+    CBF = mapData.hierarchyName.split('>');
+    url = "api/FloorImage?mapCampus=" + CBF[0] + "&mapBuilding=" + CBF[1] + "&mapFloor=" + CBF[2];
     $("#heat-wrap").show();
     $.ajax({
-        url: "api/FloorImage?mapCampus=" + CBF[0] + "&mapBuilding=" + CBF[1] + "&mapFloor=" + CBF[2],
+        url: url,
         context: document.body
-    }).done(function (mapSource) {
+    }).done((mapSource) => {
         var mapImg = document.getElementById('floorImage');
         mapImg.src = mapSource;
-        baseMapScale = setBaseMapScale(mapData, mapImg);
         $("#moveable")
             .draggable("enable")
             .css({
@@ -132,15 +131,11 @@ displayMap = function (obj) {
             })
         $("#heat-wrap")
             .css({
-                "pointer-events": "inherit",
-                "disabled": false
+                "pointer-events": "inherit"
             })
+        if (!showAnimUi) {
+            $("#animation-ui").toggle("slide");
+            showAnimUi = !showAnimUi;
+        }
     });
-}
-
-setBaseMapScale = function (mapData, mapImg) {
-    mapData['dimension']['size'] = Math.max(mapData['dimension'].length, mapData['dimension'].width);
-    mapData['scaledImage'] = { 'size': Math.max(mapImg.height, mapImg.width), 'width': mapImg.width, 'height': mapImg.height };
-    mapData['baseScale'] = mapData['scaledImage'].size / mapData['dimension'].size;
-    return mapData.baseScale;
 }

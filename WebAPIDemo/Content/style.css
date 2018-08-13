@@ -14,13 +14,15 @@
     height: inherit;
     overflow: hidden;
     pointer-events: none;
+    display: none;
 }
 
 #options {
-    position: absolute; 
-    z-index: 2; 
-    background: white; 
-    margin: 5px 5px 5px 5px;
+    position: absolute;
+    z-index: 2;
+    background: white;
+    top: 8px;
+    left: 15px;
 }
 
 .full-contain {

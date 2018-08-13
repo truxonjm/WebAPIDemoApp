@@ -194,7 +194,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ClientLocationsController.cs" />
-    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\FloorImageController.cs" />
     <Compile Include="Controllers\HeatmapController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -234,6 +233,10 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ion.rangeSlider.css" />
+    <Content Include="Content\ion.rangeSlider.skinFlat.css" />
+    <Content Include="Content\multirange.css" />
+    <Content Include="Content\normalize.css" />
     <Content Include="Content\range-slider.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
@@ -295,10 +298,12 @@
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Heatmap\heatmap-handler.js" />
     <Content Include="Scripts\Heatmap\heatmap.min.js" />
+    <Content Include="Scripts\ion.rangeSlider.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery.ui.touch-punch.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\Maps\map-load.js" />
@@ -307,11 +312,11 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\ui-behavior.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Scripts\zoom-handler.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
