@@ -39,8 +39,10 @@ namespace WebAPIDemo.Models
             var client = new RestClient(url);
             var request = new RestRequest(Method.GET);
             request.AddHeader("Authorization", ConnectionHandler.CnnVal("CMX"));
+            request.AddHeader("Accept", "*/*");
             IRestResponse response = client.Execute(request);
             return response;
         }
+
     }
 }
